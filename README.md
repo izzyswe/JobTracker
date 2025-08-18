@@ -4,7 +4,7 @@ CLI Application Tracker to track all job application using Excel...without using
 Simplifies the task for you.
 
 ## INSTALL PACKAGES
-Create the virtual environment: `python3 -m venv venv`
+Create the virtual environment: `python3 -m venv venv` <br>
 Install openpyxl: `pip3 install openpyxl`
 
 ## RUN THE PROGRAM

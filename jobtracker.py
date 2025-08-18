@@ -1,3 +1,10 @@
+'''
+    Automation: Job Tracker
+    Github: Izzyswe
+    Name: Isaac
+
+    Date: August 18, 2025
+'''
 from openpyxl import Workbook
 from openpyxl.utils import get_column_letter
 from openpyxl.styles import Alignment
@@ -16,11 +23,12 @@ ws = wb.active
 
 
 def mainMenu():
+    generateTitles()
     while True:
         print("1. Enter Job Entry \n" +
               "2. Search Job Entry \n" +
               "3. Update Job Entry")
-        opts = input(">")
+        opts = input("> ")
         print()
         if opts == "4":
             print("Exiting program.")
@@ -58,12 +66,13 @@ def updateJobDetail():
     pass
 
 
-# [FIXED FUTURE PROBLEM] this has a fixed column with data in every row
+# [FIXED FUTURE PROBLEM] this has a fixed column with new data in every row
 # def generateTitles():
 #     for i in range(1, 11):
 #         cell = columns[0] + str(i)
 #         ws[cell] = "oof"
 
+# [DONE] GENERATE TITLE AND ALL COLUMN NAMES
 def generateTitles():
     for i, n in zip(upperCol, colName):
         cell = i + "2"
@@ -80,8 +89,7 @@ def generateTitles():
     ws['A1'].alignment = Alignment(horizontal='center', vertical='center')
 
 
-generateTitles()
-mainMenu()
+getJobDetails()
 
 # Save the file
 wb.save("Job-Tracker.xlsx")

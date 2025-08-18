@@ -8,7 +8,7 @@ Create the virtual environment: `python3 -m venv venv` <br>
 Install openpyxl: `pip3 install openpyxl`
 
 ## RUN THE PROGRAM
-Currently, not in app form BUT... <br>
+Currently, not in app form (nor is it even remotely ready) BUT... <br>
 Run in the terminal by typing...`python3 jobtracker.py`<br>
 
 and then read the options in the menu

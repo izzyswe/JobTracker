@@ -11,5 +11,5 @@ Install openpyxl: `pip3 install openpyxl`
 Currently, not in app form (nor is it even remotely ready) BUT... <br>
 Run in the terminal by typing...`python3 jobtracker.py`<br>
 
-and then read the options in the menu
+and then read the options in the menu <br>
 ![menu](./menu.png)

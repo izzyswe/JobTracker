@@ -7,7 +7,7 @@
 '''
 from openpyxl import Workbook
 from openpyxl.utils import get_column_letter
-from openpyxl.styles import Alignment
+from openpyxl.styles import Alignment, Font, PatternFill
 # import datetime
 
 
@@ -22,12 +22,67 @@ wb = Workbook()
 ws = wb.active
 
 
+# [ALMOST DONE] ADD NEW DATA EVERY ROW, HOWEVER, DON'T ERASE WHEN RERUNNING THE PROGRAM
+def getJobDetails():
+    print("JOB ENTRY")
+    jobDetails = {}
+    for i in colName:
+        jobTitle = input(f"enter {i} \n >")
+        jobDetails[i] = jobTitle
+
+    print("\nFinal details:")
+    for i in colName:
+        print(f"   {i}: {{ {jobDetails[i]} }}")
+
+    # add to excel sheet
+    # Grab the next empty row
+    next_row = ws.max_row + 1
+
+    # Add the job details to the new row
+    for col_idx, col in enumerate(colName, start=1):
+        # Use the column index to get the column letter
+        column_letter = get_column_letter(col_idx)
+        cell = column_letter + str(next_row)
+        # Set the value in the cell
+        ws[cell] = jobDetails[col]
+
+
+def searchJobDetail():
+    pass
+
+
+def updateJobDetail():
+    pass
+
+
+# [DONE] GENERATE TITLE AND ALL COLUMN NAMES
+def generateTitles():
+    heading_fill = PatternFill(fill_type='solid', start_color='87f5a4', end_color='87f5a4')
+    heading_font = Font(size=16, bold=True)
+    for i, n in zip(upperCol, colName):
+        cell = i + "2"
+        ws[cell] = n
+
+    # after filling row 1 with your headers
+    for col_idx, header in enumerate(colName, start=1):
+        column_letter = get_column_letter(col_idx)
+        # set width a bit bigger than the header length
+        ws.column_dimensions[column_letter].width = len(header) + 2
+
+    ws.merge_cells('A1:I1')
+    ws['A1'] = "Job Tracker"
+    ws['A1'].alignment = Alignment(horizontal='center', vertical='center')
+    ws['A1'].font = heading_font
+    ws['A1'].fill = heading_fill
+
+
 def mainMenu():
-    generateTitles()
     while True:
-        print("1. Enter Job Entry \n" +
+        print("|  JOB TRACKER MENU | \n\n"
+              "1. Enter Job Entry \n" +
               "2. Search Job Entry \n" +
-              "3. Update Job Entry")
+              "3. Update Job Entry \n" +
+              "4. Quit Program")
         opts = input("> ")
         print()
         if opts == "4":
@@ -45,66 +100,8 @@ def mainMenu():
                 print("Invalid Input")
 
 
-def getJobDetails():
-    print("JOB ENTRY")
-    jobDetails = {}
-    for i in colName:
-        jobTitle = input(f"enter {i} \n >")
-        jobDetails[i] = jobTitle
-        ws[jobDetails]
-
-    print("\nFinal details:")
-    for i in colName:
-        print(f"   {i}: {{ {jobDetails[i]} }}")
-
-
-def searchJobDetail():
-    pass
-
-
-def updateJobDetail():
-    pass
-
-
-# [FIXED FUTURE PROBLEM] this has a fixed column with new data in every row
-# def generateTitles():
-#     for i in range(1, 11):
-#         cell = columns[0] + str(i)
-#         ws[cell] = "oof"
-
-# [DONE] GENERATE TITLE AND ALL COLUMN NAMES
-def generateTitles():
-    for i, n in zip(upperCol, colName):
-        cell = i + "2"
-        ws[cell] = n
-
-    # after filling row 1 with your headers
-    for col_idx, header in enumerate(colName, start=1):
-        column_letter = get_column_letter(col_idx)
-        # set width a bit bigger than the header length
-        ws.column_dimensions[column_letter].width = len(header) + 2
-
-    ws.merge_cells('A1:I1')
-    ws['A1'] = "Job Tracker"
-    ws['A1'].alignment = Alignment(horizontal='center', vertical='center')
-
-
-getJobDetails()
+generateTitles()
+mainMenu()
 
 # Save the file
 wb.save("Job-Tracker.xlsx")
-
-
-# CONCEPT CODE
-# for i in rows:
-#     if i == 0 :
-#         continue
-#     for j in columns:
-#         print(j, i)
-
-# documentation Code
-# # Rows can also be appended
-# ws.append([1, 2, 3])
-#
-# # Python types will automatically be converted
-# # ws['A2'] = datetime.datetime.now()

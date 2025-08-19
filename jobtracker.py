@@ -10,6 +10,17 @@ from openpyxl.utils import get_column_letter
 from openpyxl.styles import Alignment, Font, PatternFill
 # import datetime
 
+######## TODO
+#### FIXES
+# 1. fix getJobDetails function
+# 2. work on Search JobDetail Function
+# 3. work on updateJobDetail
+
+#### FUTURE FEATURE WANTS
+# 1. Add GUI
+# 2. DRAG N DROP TXT FILE CONVERSION
+# 3. WEB SCRAP LIVE CHANGES
+
 
 # all the neccesary columns
 colName = ["id", "Company Name", "Position", "Address", "CV or Resume", "Web Link", "Status", "Date Applied", "Deadline"]

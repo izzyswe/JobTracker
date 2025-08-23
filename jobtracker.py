@@ -6,6 +6,8 @@
     Date: August 18, 2025
 '''
 import os
+import pyperclip as pc
+import time
 from openpyxl import Workbook, load_workbook
 from openpyxl.utils import get_column_letter
 from openpyxl.styles import Alignment, Font, PatternFill
@@ -43,22 +45,26 @@ def checkWorksheet(filename="Job-Tracker.xlsx"):
 
 # [FIXED] THIS CODE WAS WAY MORE SIMPLER THAN PREVIOUS CODE
 def getJobDetails(worksheet):
+    os.system('clear')
     print("JOB ENTRY")
     rowData = []
     # loop throught the colName list to get input for every column
     for i in colName:
-        if i == colName[7] or i == colName[8]:
+        if i == colName[5]:
+            valInput = pc.paste()
+            print(f"Enter {i}: \n> {valInput}")
+        elif i == colName[7] or i == colName[8]:
             while True:
-                value = input(f"Enter {i} (YYYYMMDD)\n> ")
+                valInput = input(f"Enter {i} (YYYYMMDD)\n> ")
                 try:
-                    value = datetime.strptime(value, "%Y%m%d").date()
+                    valInput = datetime.strptime(valInput, "%Y%m%d").date()
                     break
                 except ValueError:
                     print("Invalid Format. Use YYYYMMDD")
         else:
-            value = input(f"Enter {i}\n> ")
+            valInput = input(f"Enter {i}\n> ")
         # append every value into the rowData array
-        rowData.append(value)
+        rowData.append(valInput)
 
     # in the worksheet argument, append the rowData in openpyxl ws
     worksheet.append(rowData)
@@ -66,10 +72,20 @@ def getJobDetails(worksheet):
 
 
 def searchJobDetail():
-    pass
+    os.system('clear')
+    print("SEARCH JOB APPLICATION\n")
+    # rowData = []
+    searchInput = input("Search by the Following: \n" +
+                        "1. ID \n" +
+                        "2. Company Name \n" +
+                        "3. Position \n" +
+                        "4. Status \n" +
+                        "5. Relevant Links \n>>>> ")
+    print(searchInput) # debug
 
 
 def updateJobDetail():
+    os.system('clear')
     pass
 
 
@@ -96,7 +112,7 @@ def generateTitles(worksheet):
 
 def mainMenu(worksheet):
     while True:
-        print("\n|  JOB TRACKER MENU | \n\n"
+        print("\n|  JOB TRACKER MENU  | \n\n"
               "1. Enter Job Entry \n" +
               "2. Search Job Entry \n" +
               "3. Update Job Entry \n" +

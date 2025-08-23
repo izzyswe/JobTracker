@@ -50,10 +50,7 @@ def getJobDetails(worksheet):
         value = input(f"Enter {i}\n> ")
         # append every value into the rowData array
         rowData.append(value)
-    
-    # --- DEBUG LINE ---
-    print(f"DEBUG: The worksheet's max_row is currently {worksheet.max_row}")
-    # ------------------
+
 
     # in the worksheet argument, append the rowData in openpyxl ws
     worksheet.append(rowData)

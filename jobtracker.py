@@ -7,7 +7,6 @@
 '''
 import os
 import pyperclip as pc
-import time
 from openpyxl import Workbook, load_workbook
 from openpyxl.utils import get_column_letter
 from openpyxl.styles import Alignment, Font, PatternFill
@@ -43,7 +42,7 @@ def checkWorksheet(filename="Job-Tracker.xlsx"):
     return wb
 
 
-# [FIXED] THIS CODE WAS WAY MORE SIMPLER THAN PREVIOUS CODE
+# [FIXED] CURRENT CODE IS WAY MORE SIMPLER THAN PREVIOUS CODE
 def getJobDetails(worksheet):
     os.system('clear')
     print("JOB ENTRY")

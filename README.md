@@ -5,7 +5,8 @@ Simplifies the task for you.
 
 ## INSTALL PACKAGES
 Create the virtual environment: `python3 -m venv venv` <br>
-Install openpyxl: `pip3 install openpyxl`
+Install openpyxl: `pip3 install openpyxl` <br>
+Install Pyperclip: `pip3 install pyperclip`
 
 ## RUN THE PROGRAM
 Currently, not in app form (nor is it even remotely ready) BUT... <br>

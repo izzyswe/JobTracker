@@ -30,8 +30,8 @@ columns = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
 upperCol = [item.upper() for item in columns]
 
 
-# [ADDED] KEPT OVERRIDING SO THIS FUNCTION WILL CHECK IF ON EXIST
-# OR AUTOGENERATE IF DOES NOT EXIST TO PREVENT THE ORGINAL ISSUE
+# [ADDED] KEPT OVERRIDING SO THIS FUNCTION WILL CHECK IF IT EXISTS
+# OR AUTOGENERATE A NEW SPREADSHEET IF IT DOES NOT EXIST TO PREVENT THE ORGINAL ISSUE
 def checkWorksheet(filename="Job-Tracker.xlsx"):
     if os.path.exists(filename):
         wb = load_workbook(filename)
@@ -47,7 +47,7 @@ def getJobDetails(worksheet):
     os.system('clear')
     print("JOB ENTRY")
     rowData = []
-    # loop throught the colName list to get input for every column
+    # loop throughout the colName list to get input for every column
     for i in colName:
         if i == colName[5]:
             valInput = pc.paste()
@@ -80,7 +80,8 @@ def searchJobDetail():
                         "3. Position \n" +
                         "4. Status \n" +
                         "5. Relevant Links \n>>>> ")
-    print(searchInput) # debug
+    # debug line
+    print(searchInput)
 
 
 def updateJobDetail():
@@ -134,7 +135,7 @@ def mainMenu(worksheet):
 
 
 # [ADDED] CREATED AN ENTRY POINT FOR ALL CALLS AND CODE TO BE IN
-# SINCE ITS NOT CLASS BASED, IM NOT CREATING A MIAN FUNCTION
+# SINCE ITS NOT CLASS BASED, IM NOT CREATING A MAIN FUNCTION
 if __name__ == "__main__":
     try:
         wb = checkWorksheet()

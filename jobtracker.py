@@ -9,7 +9,7 @@ import os
 from openpyxl import Workbook, load_workbook
 from openpyxl.utils import get_column_letter
 from openpyxl.styles import Alignment, Font, PatternFill
-# import datetime
+from datetime import datetime
 
 ######## TODO
 #### FIXES
@@ -47,10 +47,18 @@ def getJobDetails(worksheet):
     rowData = []
     # loop throught the colName list to get input for every column
     for i in colName:
-        value = input(f"Enter {i}\n> ")
+        if i == colName[7] or i == colName[8]:
+            while True:
+                value = input(f"Enter {i} (YYYYMMDD)\n> ")
+                try:
+                    value = datetime.strptime(value, "%Y%m%d").date()
+                    break
+                except ValueError:
+                    print("Invalid Format. Use YYYYMMDD")
+        else:
+            value = input(f"Enter {i}\n> ")
         # append every value into the rowData array
         rowData.append(value)
-
 
     # in the worksheet argument, append the rowData in openpyxl ws
     worksheet.append(rowData)

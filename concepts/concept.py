@@ -17,6 +17,32 @@ def generateTitles():
         cell = columns[0] + str(i)
         ws[cell] = "oof"
 
+
+#### OLD BUT WORKING CODE, over complicated so went for a simpler solution
+# def getJobDetails():
+#     print("JOB ENTRY")
+#     jobDetails = {}
+#     for i in colName:
+#         jobTitle = input(f"enter {i} \n >")
+#         jobDetails[i] = jobTitle
+#
+#     print("\nFinal details:")
+#     for i in colName:
+#         print(f"   {i}: {{ {jobDetails[i]} }}")
+#
+#     # add to excel sheet
+#     # Grab the next empty row
+#     next_row = ws.max_row + 1
+#
+#     # Add the job details to the new row
+#     for col_idx, col in enumerate(colName, start=1):
+#         # Use the column index to get the column letter
+#         column_letter = get_column_letter(col_idx)
+#         cell = column_letter + str(next_row)
+#         # Set the value in the cell
+#         ws[cell] = jobDetails[col]
+
+
 # CONCEPT CODE
 # for i in rows:
 #     if i == 0 :

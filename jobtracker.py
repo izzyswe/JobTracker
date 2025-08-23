@@ -91,7 +91,7 @@ def generateTitles(worksheet):
 
 def mainMenu(worksheet):
     while True:
-        print("|  JOB TRACKER MENU | \n\n"
+        print("\n|  JOB TRACKER MENU | \n\n"
               "1. Enter Job Entry \n" +
               "2. Search Job Entry \n" +
               "3. Update Job Entry \n" +
@@ -116,9 +116,13 @@ def mainMenu(worksheet):
 # [ADDED] CREATED AN ENTRY POINT FOR ALL CALLS AND CODE TO BE IN
 # SINCE ITS NOT CLASS BASED, IM NOT CREATING A MIAN FUNCTION
 if __name__ == "__main__":
-    wb = checkWorksheet()
-    ws = wb.active
-    mainMenu(ws)
-
-    # Save the file
-    wb.save("Job-Tracker.xlsx")
+    try:
+        wb = checkWorksheet()
+        ws = wb.active
+        mainMenu(ws)
+    except KeyboardInterrupt:
+        print("\n")
+    finally:
+        # Save the file
+        wb.save("Job-Tracker.xlsx")
+        print("workload saved")

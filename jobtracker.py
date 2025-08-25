@@ -52,6 +52,14 @@ def getJobDetails(worksheet):
         if i == colName[5]:
             valInput = pc.paste()
             print(f"Enter {i}: \n> {valInput}")
+        elif i == colName[6]:
+            valInput = input(f"Enter {i}: \n> ")
+            if valInput.lower() == "applied" or valInput.lower() == "sent" or valInput.lower() == "a":
+                hasAppliedStatus = True
+            elif valInput.lower() == "not applied" or valInput.lower() == "n":
+                hasNotAppliedStatus = True
+            elif valInput.lower() == "applying":
+                isCurrentlyApplyingStatus = True
         elif i == colName[7] or i == colName[8]:
             while True:
                 valInput = input(f"Enter {i} (YYYYMMDD)\n> ")
@@ -67,6 +75,23 @@ def getJobDetails(worksheet):
 
     # in the worksheet argument, append the rowData in openpyxl ws
     worksheet.append(rowData)
+
+    # AFTER ALL THE ROW ENTRY HAS BEEN APPLIED
+    if hasAppliedStatus:
+        # [ FIXED ]: Use the correct string "Status" to find the column, not the old 'i' variable.
+        # [ FIXED ]: Use worksheet.max_row, not max_row + 1.
+        status_clr = PatternFill(fill_type='solid', start_color='005ef5', end_color='005ef5')
+        cellFill = f"{get_column_letter(colName.index("Status") + 1)}{worksheet.max_row}"
+        worksheet[cellFill].fill = status_clr
+    elif hasNotAppliedStatus:
+        status_clr = PatternFill(fill_type='solid', start_color='f50039', end_color='f50039')
+        cellFill = f"{get_column_letter(colName.index("Status") + 1)}{worksheet.max_row}"
+        worksheet[cellFill].fill = status_clr
+    elif isCurrentlyApplyingStatus:
+        status_clr = PatternFill(fill_type='solid', start_color='26ff40', end_color='26ff40')
+        cellFill = f"{get_column_letter(colName.index("Status") + 1)}{worksheet.max_row}"
+        worksheet[cellFill].fill = status_clr
+
     print("-- Entry Added! --\n")
 
 

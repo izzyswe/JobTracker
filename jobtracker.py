@@ -47,6 +47,8 @@ def getJobDetails(worksheet):
     os.system('clear')
     print("JOB ENTRY")
     rowData = []
+    # initialize the variable to solve UnboundLocalError, they were used before they were assigned
+    hasAppliedStatus = hasNotAppliedStatus = isCurrentlyApplyingStatus = False
     # loop throughout the colName list to get input for every column
     for i in colName:
         if i == colName[5]:
@@ -54,9 +56,10 @@ def getJobDetails(worksheet):
             print(f"Enter {i}: \n> {valInput}")
         elif i == colName[6]:
             valInput = input(f"Enter {i}: \n> ")
-            if valInput.lower() == "applied" or valInput.lower() == "sent" or valInput.lower() == "a":
+            # turned it to a tuple for concise reading and readonly purposes
+            if valInput.lower() == ("applied", "sent", "a"):
                 hasAppliedStatus = True
-            elif valInput.lower() == "not applied" or valInput.lower() == "n":
+            elif valInput.lower() == ("not applied", "n"):
                 hasNotAppliedStatus = True
             elif valInput.lower() == "applying":
                 isCurrentlyApplyingStatus = True
@@ -80,11 +83,11 @@ def getJobDetails(worksheet):
     if hasAppliedStatus:
         # [ FIXED ]: Use the correct string "Status" to find the column, not the old 'i' variable.
         # [ FIXED ]: Use worksheet.max_row, not max_row + 1.
-        status_clr = PatternFill(fill_type='solid', start_color='005ef5', end_color='005ef5')
+        status_clr = PatternFill(fill_type='solid', start_color='005ef5', end_color='005ef5', fgColor='ffffff')
         cellFill = f"{get_column_letter(colName.index("Status") + 1)}{worksheet.max_row}"
         worksheet[cellFill].fill = status_clr
     elif hasNotAppliedStatus:
-        status_clr = PatternFill(fill_type='solid', start_color='f50039', end_color='f50039')
+        status_clr = PatternFill(fill_type='solid', start_color='f50039', end_color='f50039', fgColor='ffffff')
         cellFill = f"{get_column_letter(colName.index("Status") + 1)}{worksheet.max_row}"
         worksheet[cellFill].fill = status_clr
     elif isCurrentlyApplyingStatus:

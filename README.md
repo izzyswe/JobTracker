@@ -1,6 +1,8 @@
-# Job Application Tracker
-
-CLI Application Tracker to track all job application using Excel...without using Excel
+<div align="center">
+    <img src="./logo.png" alt="JobTracker" width="90"/>
+    <h1>Job Tracker</h1>
+</div>
+CLI Application Tracker to track all job application using Excel...without using Excel <br>
 Simplifies the task for you.
 
 ## INSTALL PACKAGES

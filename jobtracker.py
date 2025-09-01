@@ -34,6 +34,7 @@ upperCol = [item.upper() for item in columns]
 def checkOs():
     os.system('cls') if os.name == 'nt' else os.system('clear')
 
+
 # [ADDED] KEPT OVERRIDING SO THIS FUNCTION WILL CHECK IF IT EXISTS
 # OR AUTOGENERATE A NEW SPREADSHEET IF IT DOES NOT EXIST TO PREVENT THE ORGINAL ISSUE
 def checkWorksheet(filename="Job-Tracker.xlsx"):
@@ -158,10 +159,11 @@ def mainMenu(worksheet):
               "1. Enter Job Entry \n" +
               "2. Search Job Entry \n" +
               "3. Update Job Entry \n" +
-              "4. Quit Program")
+              "4. Install GUI version \n" +
+              "5. Quit Program")
         opts = input("> ")
         print()
-        if opts == "4":
+        if opts == "5":
             print("Exiting program.")
             break
 
@@ -172,6 +174,8 @@ def mainMenu(worksheet):
                 searchJobDetail(worksheet)
             case "3":
                 updateJobDetail()
+            case "4":
+                pass
             case _:
                 print("Invalid Input")
 

@@ -13,16 +13,27 @@ from openpyxl.styles import Alignment, Font, PatternFill
 from datetime import datetime
 from jobSearch import jobSearch
 
-######## TODO
-#### FIXES
-# [fixed]   1. fix getJobDetails function
-# [started] 2. work on Search JobDetail Function
+# ____TODO____ [✔] - copy this to mark things as done
+
+# [ fix, ONGOING ]
+# 1. fix getJobDetails function
+#   - refactor if statements, repetition == bad
+#   - fix Pattern Fill
+
+# [started, ONGOING]
+# 2. work on Search JobDetail Function
+#   - date range search ✔
+#   - implemenet id, company, positon, status search
+#   - implement power search
+
+# [NOT STARTED, HOLD]
 # 3. work on updateJobDetail
 
-#### FUTURE FEATURE WANTS
-# 1. Add GUI
-# 2. DRAG N DROP TXT FILE CONVERSION
-# 3. WEB SCRAP LIVE CHANGES
+# [ FUTURE FEATURE WANTS ]
+# 1. Refactor main to OOP
+# 1. Add GUI (Tkinter or PyQT)
+# 2. DRAG N DROP TXT FILE CONVERSION (tkinterdnd2)
+# 3. WEB SCRAP LIVE CHANGES (BeautifulSoup2 or Selenium)
 
 
 # all the neccesary columns
@@ -33,6 +44,7 @@ upperCol = [item.upper() for item in columns]
 
 def checkOs():
     os.system('cls') if os.name == 'nt' else os.system('clear')
+
 
 # [ADDED] KEPT OVERRIDING SO THIS FUNCTION WILL CHECK IF IT EXISTS
 # OR AUTOGENERATE A NEW SPREADSHEET IF IT DOES NOT EXIST TO PREVENT THE ORGINAL ISSUE
@@ -55,6 +67,7 @@ def getJobDetails(worksheet):
     hasAppliedStatus = hasNotAppliedStatus = isCurrentlyApplyingStatus = False
     # loop throughout the colName list to get input for every column
     for i in colName:
+        ## [REFACTOR] TOO MANY FRIGGIN IF-STATEMENTS, BAD CODE
         if i == colName[5]:
             valInput = pc.paste()
             print(f"Enter {i}: \n> {valInput}")
@@ -83,6 +96,7 @@ def getJobDetails(worksheet):
     # in the worksheet argument, append the rowData in openpyxl ws
     worksheet.append(rowData)
 
+    ## [REFACTOR] THIS CAN BE MORE CONCISE, ITS REPETITIVE.
     # AFTER ALL THE ROW ENTRY HAS BEEN APPLIED
     if hasAppliedStatus:
         # [ FIXED ]: Use the correct string "Status" to find the column, not the old 'i' variable.

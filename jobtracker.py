@@ -11,6 +11,7 @@ from openpyxl import Workbook, load_workbook
 from openpyxl.utils import get_column_letter
 from openpyxl.styles import Alignment, Font, PatternFill
 from datetime import datetime
+from jobSearch import jobSearch
 
 ######## TODO
 #### FIXES
@@ -30,6 +31,9 @@ columns = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
 upperCol = [item.upper() for item in columns]
 
 
+def checkOs():
+    os.system('cls') if os.name == 'nt' else os.system('clear')
+
 # [ADDED] KEPT OVERRIDING SO THIS FUNCTION WILL CHECK IF IT EXISTS
 # OR AUTOGENERATE A NEW SPREADSHEET IF IT DOES NOT EXIST TO PREVENT THE ORGINAL ISSUE
 def checkWorksheet(filename="Job-Tracker.xlsx"):
@@ -44,7 +48,7 @@ def checkWorksheet(filename="Job-Tracker.xlsx"):
 
 # [FIXED] CURRENT CODE IS WAY MORE SIMPLER THAN PREVIOUS CODE
 def getJobDetails(worksheet):
-    os.system('clear')
+    checkOs()
     print("JOB ENTRY")
     rowData = []
     # initialize the variable to solve UnboundLocalError, they were used before they were assigned
@@ -98,8 +102,8 @@ def getJobDetails(worksheet):
     print("-- Entry Added! --\n")
 
 
-def searchJobDetail():
-    os.system('clear')
+def searchJobDetail(worksheet):
+    checkOs()
     print("SEARCH JOB APPLICATION\n")
     # rowData = []
     searchInput = input("Search by the Following: \n" +
@@ -107,13 +111,23 @@ def searchJobDetail():
                         "2. Company Name \n" +
                         "3. Position \n" +
                         "4. Status \n" +
-                        "5. Relevant Links \n>>>> ")
-    # debug line
-    print(searchInput)
+                        "5. Date Range \n>>>> ")
+    match searchInput:
+        case "1":
+            pass
+        case "2":
+            pass
+        case "3":
+            pass
+        case "4":
+            pass
+        case "5":
+            job_searcher = jobSearch(worksheet)  # Create instance with worksheet
+            job_searcher.searchByDate()  # Call the method
 
 
 def updateJobDetail():
-    os.system('clear')
+    checkOs()
     pass
 
 
@@ -155,7 +169,7 @@ def mainMenu(worksheet):
             case "1":
                 getJobDetails(worksheet)
             case "2":
-                searchJobDetail()
+                searchJobDetail(worksheet)
             case "3":
                 updateJobDetail()
             case _:

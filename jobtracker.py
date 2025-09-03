@@ -41,6 +41,24 @@ colName = ["id", "Company Name", "Position", "Address", "CV or Resume", "Web Lin
 columns = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
 upperCol = [item.upper() for item in columns]
 
+# CONSTANT DICTIONARIES
+APPLICATION_STATUS = {
+    "hasAppliedStatus": PatternFill(fill_type='solid', start_color='005ef5', end_color='005ef5', fgColor='ffffff'),
+    "hasNotAppliedStatus": PatternFill(fill_type='solid', start_color='f50039', end_color='f50039', fgColor='ffffff'),
+    "isCurrentlyApplyingStatus": PatternFill(fill_type='solid', start_color='26ff40', end_color='26ff40')
+}
+
+STATUS_INPUT = {
+    "applied": ("applied", "sent", "a"),
+    "not applied": ("not applied", "n"),
+    "applying": "applying"
+}
+
+# placeholders
+#        cellFill = f"{get_column_letter(colName.index("Status") + 1)}{worksheet.max_row}",
+# cellFill = f"{get_column_letter(colName.index("Status") + 1)}{worksheet.max_row}"   worksheet[cellFill].fill = status_clr,
+#        cellFill = f"{get_column_letter(colName.index("Status") + 1)}{worksheet.max_row}"    worksheet[cellFill].fill = status_clr
+
 
 def checkOs():
     os.system('cls') if os.name == 'nt' else os.system('clear')
@@ -118,6 +136,7 @@ def getJobDetails(worksheet):
 
 def searchJobDetail(worksheet):
     checkOs()
+    job_searcher = jobSearch(worksheet)  # Create instance with worksheet
     print("SEARCH JOB APPLICATION\n")
     # rowData = []
     searchInput = input("Search by the Following: \n" +
@@ -128,7 +147,7 @@ def searchJobDetail(worksheet):
                         "5. Date Range \n>>>> ")
     match searchInput:
         case "1":
-            pass
+            job_searcher.searchByID()
         case "2":
             pass
         case "3":
@@ -136,8 +155,7 @@ def searchJobDetail(worksheet):
         case "4":
             pass
         case "5":
-            job_searcher = jobSearch(worksheet)  # Create instance with worksheet
-            job_searcher.searchByDate()  # Call the method
+            job_searcher.searchByDate()
 
 
 def updateJobDetail():

@@ -19,7 +19,7 @@ class jobSearch:
         dateFormatEndInput = None
 
         while isDateFormatted:
-            getDateStartInput = input("date start: \n>")
+            getDateStartInput = input("date start: \n> ")
             try:
                 dateFormatStartInput = datetime.strptime(getDateStartInput, "%Y%m%d").date()
                 break
@@ -27,7 +27,7 @@ class jobSearch:
                 print("enter valid date (YYYYMMDD)")
 
         while isDateFormatted:
-            getDateEndInput = input("date end: \n>")
+            getDateEndInput = input("date end: \n> ")
             try:
                 dateFormatEndInput = datetime.strptime(getDateEndInput, "%Y%m%d").date()
                 break
@@ -41,6 +41,24 @@ class jobSearch:
             if dateFormatStartInput <= dateFormatEndInput:
                 print(f"Date ------- {cellValue}")
                 print(f"Matches ----  {row[1], row[2], row[6]} \n")
+
+    def searchByID(self):
+        isIDNumber = True
+        getID: int = input("enter ID: \n> ")
+        while isIDNumber:
+            if not getID.isnumeric():
+                print("error: not a numerical value")
+                getID: int = input("enter ID: \n> ")
+                break
+            else:
+                print(f"\n Searched ID: {getID} \n")
+                break
+
+        for row in self.worksheet.iter_rows(min_row=1, values_only=True):
+            cellValue = row[0]
+            if cellValue == getID:
+                print(f"Data: {cellValue}")
+                print(f"Matches: {row[1], row[2]}")
 
     def searchByLink(self):
         pass

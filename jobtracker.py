@@ -5,6 +5,7 @@
 
     Date: August 18, 2025
 '''
+
 import os
 import sys
 import pyperclip as pc

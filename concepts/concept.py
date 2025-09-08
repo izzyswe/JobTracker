@@ -11,7 +11,6 @@ upperCol = [item.upper() for item in columns]
 
 # JOB SEARCH GEMINI CONCEPT
 import os
-
 ## PREVIOUS GENERATE TITLE
 # [FIXED FUTURE PROBLEM] this has a fixed column with new data in every row
 def generateTitles():

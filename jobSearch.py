@@ -104,5 +104,6 @@ class jobSearch:
     def searchByLink(self):
         pass
 
+
     def powerSearch(self):
         pass

@@ -6,6 +6,7 @@
     Date: August 18, 2025
 '''
 import os
+import sys
 import pyperclip as pc
 from openpyxl import Workbook, load_workbook
 from openpyxl.utils import get_column_letter
@@ -90,7 +91,7 @@ def getJobDetails(worksheet):
             valInput = pc.paste()
             print(f"Enter {i}: \n> {valInput}")
         elif i == colName[6]:
-            valInput = input(f"Enter {i}: \n> ")
+            valInput = input(f"Enter {i}: \n> ").lower()
             # turned it to a tuple for concise reading and readonly purposes
             if valInput.lower() == ("applied", "sent", "a"):
                 hasAppliedStatus = True
@@ -107,7 +108,7 @@ def getJobDetails(worksheet):
                 except ValueError:
                     print("Invalid Format. Use YYYYMMDD")
         else:
-            valInput = input(f"Enter {i}\n> ")
+            valInput = input(f"Enter {i}\n> ").lower()
         # append every value into the rowData array
         rowData.append(valInput)
 
@@ -140,6 +141,7 @@ def searchJobDetail(worksheet):
     print("SEARCH JOB APPLICATION\n")
     # rowData = []
     searchInput = input("Search by the Following: \n" +
+                        "bk to go back \n\n" +
                         "1. ID \n" +
                         "2. Company Name \n" +
                         "3. Position \n" +
@@ -149,13 +151,15 @@ def searchJobDetail(worksheet):
         case "1":
             job_searcher.searchByID()
         case "2":
-            pass
+            job_searcher.searchByCompany()
         case "3":
-            pass
+            job_searcher.searchbyField(2, "Positon")
         case "4":
             pass
         case "5":
             job_searcher.searchByDate()
+        case "bk":
+            mainMenu(worksheet)
 
 
 def updateJobDetail():
@@ -193,9 +197,6 @@ def mainMenu(worksheet):
               "4. Quit Program")
         opts = input("> ")
         print()
-        if opts == "4":
-            print("Exiting program.")
-            break
 
         match opts:
             case "1":
@@ -204,6 +205,10 @@ def mainMenu(worksheet):
                 searchJobDetail(worksheet)
             case "3":
                 updateJobDetail()
+            case "4":
+                print("Exiting program.")
+                sys.exit()
+                break
             case _:
                 print("Invalid Input")
 

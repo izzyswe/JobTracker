@@ -44,7 +44,7 @@ class jobSearch:
 
     def searchByID(self):
         isIDNumber = True
-        getID: int = input("enter ID: \n> ")
+        getID: int = input("enter ID: \n> ").lower()
         while isIDNumber:
             if not getID.isnumeric():
                 print("error: not a numerical value")
@@ -59,11 +59,49 @@ class jobSearch:
             if cellValue == getID:
                 print(f"Data: {cellValue}")
                 print(f"Matches: {row[1], row[2]}")
+            else:
+                print("Not Found")
+                break
+
+    def searchByCompany(self):
+        isCompanyStr = True
+        getCompanyName = input("enter Company Name: \n> ").lower()
+        while isCompanyStr:
+            if not isinstance(getCompanyName, str):
+                print("Not a string value")
+                getCompanyName = input("enter Company Name: \n> ").lower()
+                break
+            else:
+                print(f"Searched {getCompanyName} \n\n")
+                break
+
+        for row in self.worksheet.iter_rows(min_row=1, values_only=True):
+            cellValue = row[1]
+            if cellValue == getCompanyName:
+                print(f"Data: {cellValue}")
+                print(f"Matches: {row[2], row[3]}")
+            # else:
+            #     print("Not Found")
+            #     break
+
+    def searchbyField(self, fieldIdx, fields):
+        isFieldType = True
+
+        getFieldInput = input(f"Enter {fields} \n> ")
+        while isFieldType:
+            if fields == self.colName[1:6] and isinstance(getFieldInput, str):
+                print(f"Searched: {getFieldInput} \n\n")
+                break
+            else:
+                print("Not a string value")
+                getFieldInput = input("enter Company Name: \n> ").lower()
+                break
+
+            if fields == self.colName[1] and isinstance(getFieldInput, int):
+                print(f"Searched: {getFieldInput}")
+                break
 
     def searchByLink(self):
-        pass
-
-    def searchByColumn(self):
         pass
 
     def powerSearch(self):

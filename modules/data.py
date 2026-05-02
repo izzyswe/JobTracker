@@ -18,8 +18,6 @@ class Application:
         "isCurrentlyApplyingStatus": PatternFill(fill_type='solid', start_color='26ff40', end_color='26ff40')
     })
 
-from dataclasses import dataclass, field
-
 @dataclass(frozen=True) 
 class Worksheet:
     # [DONE] GENERATE TITLE AND ALL COLUMN NAMES

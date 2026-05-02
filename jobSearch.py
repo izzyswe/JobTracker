@@ -13,6 +13,13 @@ class jobSearch:
     def __init__(self, worksheet):
         self.worksheet = worksheet
 
+    def searchByX(self, searchType, setBoolCondition = True):
+        if searchType == "Date":
+            if searchType == "id":
+                isIDNumber = setBoolCondition
+            
+
+
     def searchByDate(self):
         isDateFormatted = True
         dateFormatStartInput = None
